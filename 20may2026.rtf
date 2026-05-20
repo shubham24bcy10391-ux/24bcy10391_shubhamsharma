@@ -1,0 +1,181 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2868
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww16580\viewh17780\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 use vitcampus;\
+CREATE TABLE Persons (\
+    ID int NOT NULL,\
+    LastName varchar(255) unique not null,\
+    FirstName varchar(255) NOT NULL,\
+    Age int\
+);\
+desc persons;\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+create a taable of unoque and not null and try to add and remove from it\
+\
+\
+CREATE TABLE students (\
+    student_id INT PRIMARY KEY,\
+    email VARCHAR(100) UNIQUE NOT NULL,\
+    name VARCHAR(50) NOT NULL\
+);\
+\
+\
+INSERT INTO students (student_id, email, name)\
+VALUES\
+(1, 'john@example.com', 'John'),\
+(2, 'alice@example.com', 'Alice');\
+\
+\
+INSERT INTO students (student_id, email, name)\
+VALUES\
+(3, 'john@example.com', 'Mike');\
+\
+\
+DELETE FROM students\
+WHERE student_id = 2;\
+\
+\
+\
+SELECT * FROM students;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+CREATE TABLE Persons (\
+    ID int NOT NULL,\
+    LastName varchar(255) NOT NULL,\
+    FirstName varchar(255),\
+    Age int,\
+    CHECK (Age>=18)\
+);\
+\
+ALTER TABLE Persons	\
+ADD CHECK (Age>=18);\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+create table products(\
+pid int primary key,\
+pname varchar(100) not null,\
+prefno int not null unique\
+);\
+\
+desc products;\
+\
+insert into products values(101,'tv',12345);\
+select * from products;\
+\
+alter table persons\
+add primary key (id);\
+\
+alter table persons\
+drop primary key;\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+use vitcampus;\
+CREATE TABLE Persons (\
+    ID int NOT NULL,\
+    LastName varchar(255) unique not null,\
+    FirstName varchar(255) NOT NULL,\
+    Age int\
+);\
+desc persons;\
+\
+insert into persons values (101,'V','Jayanth',null);\
+select * from persons;\
+\
+ALTER TABLE Persons\
+ADD UNIQUE (AGE);\
+\
+ALTER TABLE Persons\
+DROP CONSTRAINT Age;\
+\
+drop table persons;\
+CREATE TABLE Persons (\
+  \
+    Age int not null,\
+    CHECK (Age>=18 and age <=23)\
+);\
+\
+insert into persons values (21);\
+\
+\
+CREATE TABLE Persons1 (\
+    ID int NOT NULL,\
+    LastName varchar(255) NOT NULL,\
+    FirstName varchar(255),\
+    Age int,\
+    City varchar(255) DEFAULT 'Coimbatore'\
+);\
+\
+desc persons1;\
+\
+create table products(\
+pid int primary key,\
+pname varchar(100) not null,\
+prefNo int not null unique\
+);\
+\
+desc products;\
+\
+insert into products values (102,"furniture",19930);\
+select * from products;\
+\
+ALTER TABLE Persons\
+ADD PRIMARY KEY (ID);\
+\
+ALTER TABLE Persons\
+DROP PRIMARY KEY;\
+drop table products;\
+create table category(\
+cid int primary key,\
+cname varchar(100) not null\
+);\
+\
+insert into category values (101,'electronics'),(102,'Home App');\
+\
+select * from category;\
+drop table products;\
+CREATE TABLE products (\
+    pid int primary key,\
+    pname varchar(100) NOT NULL,\
+    cid int, \
+    FOREIGN KEY (cid) REFERENCES category(cid)\
+);\
+desc products;\
+\
+delete from category where cid=101;\
+update \
+\
+insert into products values (504,'Power Bank Samsung',64-bit encry key);\
+\
+select * from products;\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+CREATE TABLE departments (\
+    dept_id INT PRIMARY KEY,\
+    dept_name VARCHAR(50)\
+);\
+\
+\
+CREATE TABLE employees (\
+    emp_id INT PRIMARY KEY,\
+    emp_name VARCHAR(50),\
+    dept_id INT,\
+    FOREIGN KEY (dept_id) REFERENCES departments(dept_id)\
+);\
+\
+\
+INSERT INTO departments VALUES\
+(1, 'HR'),\
+(2, 'IT');\
+\
+\
+INSERT INTO employees VALUES\
+(101, 'John', 1),\
+(102, 'Alice', 2);\
+\
+\
+SELECT * FROM departments;\
+SELECT * FROM employees;}
