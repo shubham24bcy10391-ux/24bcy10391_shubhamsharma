@@ -1,0 +1,195 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2868
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 ArialMT;\f2\fnil\fcharset0 .SFNS-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red220\green220\blue220;\red36\green36\blue36;\red14\green14\blue14;
+}
+{\*\expandedcolortbl;;\cssrgb\c89020\c89020\c89020;\cssrgb\c18824\c18824\c18824;\cssrgb\c6700\c6700\c6700;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww16380\viewh17780\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 I want to calculate for hr department , what is the total salary I\'92m spending\
+\
+CREATE TABLE departments (\
+    dept_id INT PRIMARY KEY,\
+    dept_name VARCHAR(50)\
+);\
+\
+\
+CREATE TABLE employees (\
+    emp_id INT PRIMARY KEY,\
+    emp_name VARCHAR(50),\
+    salary INT,\
+    dept_id INT,\
+    FOREIGN KEY (dept_id) REFERENCES departments(dept_id)\
+);\
+\
+\
+INSERT INTO departments VALUES\
+(1, 'HR'),\
+(2, 'IT');\
+\
+\
+INSERT INTO employees VALUES\
+(101, 'John', 30000, 1),\
+(102, 'Alice', 40000, 1),\
+(103, 'Mike', 50000, 2);\
+\
+\
+SELECT SUM(salary) AS total_hr_salary\
+FROM employees\
+WHERE dept_id = 1;\
+\
+_____________________________________________________________________________________________________________________________________________________________________________________________________________________\
+\
+Order by\
+CREATE TABLE employees (\
+    emp_id INT,\
+    emp_name VARCHAR(50),\
+    salary INT,\
+    department VARCHAR(50)\
+);\
+\
+INSERT INTO employees VALUES\
+(1, 'John', 30000, 'HR'),\
+(2, 'Alice', 50000, 'IT'),\
+(3, 'Mike', 40000, 'HR'),\
+(4, 'Sara', 60000, 'IT');\
+SELECT * \
+FROM employees\
+ORDER BY salary ASC;\
+SELECT department, SUM(salary) AS total_salary\
+FROM employees\
+GROUP BY department;\
+\
+SELECT department, SUM(salary) AS total_salary\
+FROM employees\
+GROUP BY department\
+ORDER BY total_salary DESC;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 _________________________________________________________________________________________________________________________________________________________________________________________________________________\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 Limit offset\
+CREATE TABLE employees (\
+    emp_id INT,\
+    emp_name VARCHAR(50),\
+    salary INT\
+);\
+\
+INSERT INTO employees VALUES\
+(1, 'John', 30000),\
+(2, 'Alice', 50000),\
+(3, 'Mike', 40000),\
+(4, 'Sara', 60000),\
+(5, 'David', 45000);\
+SELECT *\
+FROM employees\
+LIMIT 3;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 _________________________________________________________________________________________________________________________________________________________________________________________________________________\
+Having clause\
+CREATE TABLE employees (\
+    emp_id INT,\
+    emp_name VARCHAR(50),\
+    department VARCHAR(50),\
+    salary INT\
+);\
+\
+INSERT INTO employees VALUES\
+(1, 'John', 'HR', 30000),\
+(2, 'Alice', 'IT', 50000),\
+(3, 'Mike', 'HR', 40000),\
+(4, 'Sara', 'IT', 60000),\
+(5, 'David', 'Sales', 20000);\
+SELECT department, SUM(salary) AS total_salary\
+FROM employees\
+GROUP BY department\
+HAVING SUM(salary) > 70000;\
+________________________________________________________________________________________________________________________________________________________________________________________________________________\
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 To find the **2 departments with the least total salary**, use:\
+\
+\
+SELECT department, SUM(salary)\
+FROM worker\
+GROUP BY department\
+ORDER BY SUM(salary) ASC\
+LIMIT 2;\
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 ________________________________________________________________________________________________________________________________________________________________________________________________________________\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f2 \cf4 in admin department who is getting the second largest salary
+\f0 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+CREATE TABLE employees (\
+    emp_id INT,\
+    emp_name VARCHAR(50),\
+    department VARCHAR(50),\
+    salary INT\
+);\
+\
+INSERT INTO employees VALUES\
+(1, 'John', 'Admin', 50000),\
+(2, 'Alice', 'Admin', 70000),\
+(3, 'Mike', 'Admin', 60000),\
+(4, 'Sara', 'HR', 40000);
+\f1 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+SELECT emp_name, salary\
+FROM employees\
+\
+WHERE department = 'Admin'\
+ORDER BY salary DESC\
+LIMIT 1 OFFSET 1;\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 ________________________________________________________________________________________________________________________________________________________________________________________________________________\
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+in each department i want to print the second largest salary person\
+\
+CREATE TABLE employees (\
+    emp_id INT,\
+    emp_name VARCHAR(50),\
+    department VARCHAR(50),\
+    salary INT\
+);\
+\
+INSERT INTO employees VALUES\
+(1, 'John', 'Admin', 50000),\
+(2, 'Alice', 'Admin', 70000),\
+(3, 'Mike', 'Admin', 60000),\
+(4, 'Sara', 'HR', 40000),\
+(5, 'David', 'HR', 55000),\
+(6, 'Emma', 'HR', 45000),\
+(7, 'Tom', 'IT', 80000),\
+(8, 'Jerry', 'IT', 75000);\
+\
+SELECT department, emp_name, salary\
+FROM (\
+    SELECT \
+        department,\
+        emp_name,\
+        salary,\
+        DENSE_RANK() OVER (\
+            PARTITION BY department\
+            ORDER BY salary DESC\
+        ) AS rnk\
+    FROM employees\
+) t\
+WHERE rnk = 2;}
