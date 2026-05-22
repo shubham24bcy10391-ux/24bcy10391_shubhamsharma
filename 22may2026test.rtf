@@ -1,0 +1,73 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2868
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 ArialMT;}
+{\colortbl;\red255\green255\blue255;\red220\green220\blue220;\red36\green36\blue36;}
+{\*\expandedcolortbl;;\cssrgb\c89020\c89020\c89020;\cssrgb\c18824\c18824\c18824;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww33400\viewh21000\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs36 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 1\AppleHighlight-1 \AppleHilightClrSch-5 . Write an SQL query to fetch \'93FIRST_NAME\'94 from Worker table using the alias name as <WORKER_NAME>\cb1 \
+Ans -SELECT FIRST_NAME AS WORKER_NAME FROM Worker;\
+\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 2. Write an SQL query to fetch unique values of DEPARTMENT from Worker table.\cf2 \cb1 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf2 Ans SELECT DISTINCT DEPARTMENT FROM Worker;\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 3. Write an SQL query to print details for Workers with the first name as \'93Vipul\'94 and \'93Satish\'94 from Worker table. (without OR condition)\
+Ans SELECT * FROM Worker \
+WHERE FIRST_NAME IN ('Vipul', 'Satish');\
+\
+4. Write an SQL query to print details of the Workers whose FIRST_NAME contains \'91a\'92.\
+SELECT * FROM Worker \
+WHERE FIRST_NAME LIKE '%a%';\AppleHighlight0 \AppleHilightClrSch0 \
+\
+\
+5. Write an SQL query to print details of the Workers whose FIRST_NAME ends with \'91a\'92.\
+Ans SELECT * FROM Worker \
+WHERE FIRST_NAME LIKE '%a';\
+\
+6. Write an SQL query to print details of the admin whose SALARY lies between 100000 and 500000.\
+Ans SELECT * FROM Worker \
+WHERE DEPARTMENT = 'Admin' \
+AND SALARY BETWEEN 100000 AND 500000;\
+\
+7. Write an SQL query to fetch the count of employees working in the department \'91Admin\'92.\
+Ans SELECT DEPARTMENT, COUNT(*) AS WORKER_COUNT \
+FROM Worker \
+WHERE DEPARTMENT = 'Admin';\
+\
+8. Write an SQL query to show the second highest salary from a table.\cf2 \cb1 \strokec2 \
+Ans SELECT MAX(SALARY) AS SECOND_HIGHEST_SALARY \
+FROM Worker \
+WHERE SALARY < (SELECT MAX(SALARY) FROM Worker);\
+\
+\cf2 \cb3 \strokec2 9.Write an SQL query to fetch the departments that have less than three people in it.\
+Ans SELECT DEPARTMENT, COUNT(*) AS WORKER_COUNT \
+FROM Worker \
+GROUP BY DEPARTMENT \
+HAVING COUNT(*) < 3;\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 10. Write an SQL query to show all departments along with the total number of people in there.\cb1 \
+\
+SELECT DEPARTMENT, COUNT(*) AS WORKER_COUNT \
+FROM Worker \
+GROUP BY DEPARTMENT;\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec2 11. Write an SQL query to print the name of employees having the highest salary in each department.\
+SELECT W.DEPARTMENT, W.FIRST_NAME, W.SALARY\
+FROM Worker W\
+INNER JOIN (\
+    SELECT DEPARTMENT, MAX(SALARY) AS MAX_SALARY\
+    FROM Worker\
+    GROUP BY DEPARTMENT\
+) AS DEPT_MAX\
+ON W.DEPARTMENT = DEPT_MAX.DEPARTMENT \
+AND W.SALARY = DEPT_MAX.MAX_SALARY;\
+\
+}
