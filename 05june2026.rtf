@@ -1,0 +1,595 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2870
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;\f2\froman\fcharset0 Times-Roman;
+\f3\froman\fcharset0 Times-Bold;\f4\fmodern\fcharset0 CourierNewPSMT;}
+{\colortbl;\red255\green255\blue255;\red155\green162\blue177;\red30\green33\blue39;\red0\green0\blue0;
+\red184\green93\blue213;\red136\green185\blue102;\red42\green49\blue64;\red255\green255\blue255;\red197\green136\blue83;
+\red25\green28\blue31;\red66\green66\blue66;\red242\green242\blue242;}
+{\*\expandedcolortbl;;\cssrgb\c67059\c69804\c74902;\cssrgb\c15686\c17255\c20392;\cssrgb\c0\c0\c0;
+\cssrgb\c77647\c47059\c86667;\cssrgb\c59608\c76471\c47451;\cssrgb\c21569\c25490\c31765;\cssrgb\c100000\c100000\c100000;\cssrgb\c81961\c60392\c40000;
+\cssrgb\c12941\c14510\c16078;\cssrgb\c32941\c32941\c32941;\cssrgb\c96078\c96078\c96078;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww33400\viewh21000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 db.sales.insertMany([\
+	\{ "_id" : 1, "item" : "Americanos", "price" : 5, "size": "Short", "quantity" : 22, "date" : ISODate("2022-01-15T08:00:00Z") \},\
+	\{ "_id" : 2, "item" : "Cappuccino", "price" : 6, "size": "Short","quantity" : 12, "date" : ISODate("2022-01-16T09:00:00Z") \},\
+	\{ "_id" : 3, "item" : "Lattes", "price" : 15, "size": "Grande","quantity" : 25, "date" : ISODate("2022-01-16T09:05:00Z") \},\
+	\{ "_id" : 4, "item" : "Mochas", "price" : 25,"size": "Tall", "quantity" : 11, "date" : ISODate("2022-02-17T08:00:00Z") \},\
+	\{ "_id" : 5, "item" : "Americanos", "price" : 10, "size": "Grande","quantity" : 12, "date" : ISODate("2022-02-18T21:06:00Z") \},\
+	\{ "_id" : 6, "item" : "Cappuccino", "price" : 7, "size": "Tall","quantity" : 20, "date" : ISODate("2022-02-20T10:07:00Z") \},\
+	\{ "_id" : 7, "item" : "Lattes", "price" : 25,"size": "Tall", "quantity" : 30, "date" : ISODate("2022-02-21T10:08:00Z") \},\
+	\{ "_id" : 8, "item" : "Americanos", "price" : 10, "size": "Grande","quantity" : 21, "date" : ISODate("2022-02-22T14:09:00Z") \},\
+	\{ "_id" : 9, "item" : "Cappuccino", "price" : 10, "size": "Grande","quantity" : 17, "date" : ISODate("2022-02-23T14:09:00Z") \},\
+	\{ "_id" : 10, "item" : "Americanos", "price" : 8, "size": "Tall","quantity" : 15, "date" : ISODate("2022-02-25T14:09:00Z")\}\
+]);\
+\
+db.sales.aggregate([\
+  \{\
+    $group: \{\
+      _id: '$item',\
+      averageQty: \{ $avg: '$quantity' \},\
+    \},\
+  \},\
+]);\
+\
+\
+db.sales.aggregate([\
+  \{\
+    $group: \{\
+      _id: '$item',\
+      averageAmount: \{ $avg: \{ $multiply: ['$quantity', '$price'] \} \},\
+    \},\
+  \},
+\f1 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 db.sales.aggregate([
+\f2 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$group: \{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0_id: \cf5 \cb3 \strokec5 null\cf2 \cb3 \strokec2 ,
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0totalQty: \{ $sum: \cf6 \strokec6 '$quantity'\cf2 \strokec2  \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 ]);
+\f2 \cf0 \cb1 \strokec4 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+  \{ $sort: \{ averageAmount: 1 \} \},\
+])\
+\
+\pard\pardeftab720\sa106\partightenfactor0
+\cf7 \cb8 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec7 Introduction to the MongoDB $count\cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 db.sales.insertMany([
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 	\{ \cf6 \strokec6 "_id"\cf2 \strokec2  : \cf9 \strokec9 1\cf2 \strokec2 , \cf6 \strokec6 "item"\cf2 \strokec2  : \cf6 \strokec6 "Americanos"\cf2 \strokec2 , \cf6 \strokec6 "price"\cf2 \strokec2  : \cf9 \strokec9 5\cf2 \strokec2 , \cf6 \strokec6 "size"\cf2 \strokec2 : \cf6 \strokec6 "Short"\cf2 \strokec2 , \cf6 \strokec6 "quantity"\cf2 \strokec2  : \cf9 \strokec9 22\cf2 \strokec2 , \cf6 \strokec6 "date"\cf2 \strokec2  : ISODate(\cf6 \strokec6 "2022-01-15T08:00:00Z"\cf2 \strokec2 ) \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 	\{ \cf6 \strokec6 "_id"\cf2 \strokec2  : \cf9 \strokec9 2\cf2 \strokec2 , \cf6 \strokec6 "item"\cf2 \strokec2  : \cf6 \strokec6 "Cappuccino"\cf2 \strokec2 , \cf6 \strokec6 "price"\cf2 \strokec2  : \cf9 \strokec9 6\cf2 \strokec2 , \cf6 \strokec6 "size"\cf2 \strokec2 : \cf6 \strokec6 "Short"\cf2 \strokec2 ,\cf6 \strokec6 "quantity"\cf2 \strokec2  : \cf9 \strokec9 12\cf2 \strokec2 , \cf6 \strokec6 "date"\cf2 \strokec2  : ISODate(\cf6 \strokec6 "2022-01-16T09:00:00Z"\cf2 \strokec2 ) \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 	\{ \cf6 \strokec6 "_id"\cf2 \strokec2  : \cf9 \strokec9 3\cf2 \strokec2 , \cf6 \strokec6 "item"\cf2 \strokec2  : \cf6 \strokec6 "Lattes"\cf2 \strokec2 , \cf6 \strokec6 "price"\cf2 \strokec2  : \cf9 \strokec9 15\cf2 \strokec2 , \cf6 \strokec6 "size"\cf2 \strokec2 : \cf6 \strokec6 "Grande"\cf2 \strokec2 ,\cf6 \strokec6 "quantity"\cf2 \strokec2  : \cf9 \strokec9 25\cf2 \strokec2 , \cf6 \strokec6 "date"\cf2 \strokec2  : ISODate(\cf6 \strokec6 "2022-01-16T09:05:00Z"\cf2 \strokec2 ) \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 	\{ \cf6 \strokec6 "_id"\cf2 \strokec2  : \cf9 \strokec9 4\cf2 \strokec2 , \cf6 \strokec6 "item"\cf2 \strokec2  : \cf6 \strokec6 "Mochas"\cf2 \strokec2 , \cf6 \strokec6 "price"\cf2 \strokec2  : \cf9 \strokec9 25\cf2 \strokec2 ,\cf6 \strokec6 "size"\cf2 \strokec2 : \cf6 \strokec6 "Tall"\cf2 \strokec2 , \cf6 \strokec6 "quantity"\cf2 \strokec2  : \cf9 \strokec9 11\cf2 \strokec2 , \cf6 \strokec6 "date"\cf2 \strokec2  : ISODate(\cf6 \strokec6 "2022-02-17T08:00:00Z"\cf2 \strokec2 ) \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 	\{ \cf6 \strokec6 "_id"\cf2 \strokec2  : \cf9 \strokec9 5\cf2 \strokec2 , \cf6 \strokec6 "item"\cf2 \strokec2  : \cf6 \strokec6 "Americanos"\cf2 \strokec2 , \cf6 \strokec6 "price"\cf2 \strokec2  : \cf9 \strokec9 10\cf2 \strokec2 , \cf6 \strokec6 "size"\cf2 \strokec2 : \cf6 \strokec6 "Grande"\cf2 \strokec2 ,\cf6 \strokec6 "quantity"\cf2 \strokec2  : \cf9 \strokec9 12\cf2 \strokec2 , \cf6 \strokec6 "date"\cf2 \strokec2  : ISODate(\cf6 \strokec6 "2022-02-18T21:06:00Z"\cf2 \strokec2 ) \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 	\{ \cf6 \strokec6 "_id"\cf2 \strokec2  : \cf9 \strokec9 6\cf2 \strokec2 , \cf6 \strokec6 "item"\cf2 \strokec2  : \cf6 \strokec6 "Cappuccino"\cf2 \strokec2 , \cf6 \strokec6 "price"\cf2 \strokec2  : \cf9 \strokec9 7\cf2 \strokec2 , \cf6 \strokec6 "size"\cf2 \strokec2 : \cf6 \strokec6 "Tall"\cf2 \strokec2 ,\cf6 \strokec6 "quantity"\cf2 \strokec2  : \cf9 \strokec9 20\cf2 \strokec2 , \cf6 \strokec6 "date"\cf2 \strokec2  : ISODate(\cf6 \strokec6 "2022-02-20T10:07:00Z"\cf2 \strokec2 ) \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 	\{ \cf6 \strokec6 "_id"\cf2 \strokec2  : \cf9 \strokec9 7\cf2 \strokec2 , \cf6 \strokec6 "item"\cf2 \strokec2  : \cf6 \strokec6 "Lattes"\cf2 \strokec2 , \cf6 \strokec6 "price"\cf2 \strokec2  : \cf9 \strokec9 25\cf2 \strokec2 ,\cf6 \strokec6 "size"\cf2 \strokec2 : \cf6 \strokec6 "Tall"\cf2 \strokec2 , \cf6 \strokec6 "quantity"\cf2 \strokec2  : \cf9 \strokec9 30\cf2 \strokec2 , \cf6 \strokec6 "date"\cf2 \strokec2  : ISODate(\cf6 \strokec6 "2022-02-21T10:08:00Z"\cf2 \strokec2 ) \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 	\{ \cf6 \strokec6 "_id"\cf2 \strokec2  : \cf9 \strokec9 8\cf2 \strokec2 , \cf6 \strokec6 "item"\cf2 \strokec2  : \cf6 \strokec6 "Americanos"\cf2 \strokec2 , \cf6 \strokec6 "price"\cf2 \strokec2  : \cf9 \strokec9 10\cf2 \strokec2 , \cf6 \strokec6 "size"\cf2 \strokec2 : \cf6 \strokec6 "Grande"\cf2 \strokec2 ,\cf6 \strokec6 "quantity"\cf2 \strokec2  : \cf9 \strokec9 21\cf2 \strokec2 , \cf6 \strokec6 "date"\cf2 \strokec2  : ISODate(\cf6 \strokec6 "2022-02-22T14:09:00Z"\cf2 \strokec2 ) \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 	\{ \cf6 \strokec6 "_id"\cf2 \strokec2  : \cf9 \strokec9 9\cf2 \strokec2 , \cf6 \strokec6 "item"\cf2 \strokec2  : \cf6 \strokec6 "Cappuccino"\cf2 \strokec2 , \cf6 \strokec6 "price"\cf2 \strokec2  : \cf9 \strokec9 10\cf2 \strokec2 , \cf6 \strokec6 "size"\cf2 \strokec2 : \cf6 \strokec6 "Grande"\cf2 \strokec2 ,\cf6 \strokec6 "quantity"\cf2 \strokec2  : \cf9 \strokec9 17\cf2 \strokec2 , \cf6 \strokec6 "date"\cf2 \strokec2  : ISODate(\cf6 \strokec6 "2022-02-23T14:09:00Z"\cf2 \strokec2 ) \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 	\{ \cf6 \strokec6 "_id"\cf2 \strokec2  : \cf9 \strokec9 10\cf2 \strokec2 , \cf6 \strokec6 "item"\cf2 \strokec2  : \cf6 \strokec6 "Americanos"\cf2 \strokec2 , \cf6 \strokec6 "price"\cf2 \strokec2  : \cf9 \strokec9 8\cf2 \strokec2 , \cf6 \strokec6 "size"\cf2 \strokec2 : \cf6 \strokec6 "Tall"\cf2 \strokec2 ,\cf6 \strokec6 "quantity"\cf2 \strokec2  : \cf9 \strokec9 15\cf2 \strokec2 , \cf6 \strokec6 "date"\cf2 \strokec2  : ISODate(\cf6 \strokec6 "2022-02-25T14:09:00Z"\cf2 \strokec2 )\}
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 ]);
+\f2 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0 \cf7 \cb8 \strokec7 1) Using MongoDB $count to count the number of documents per group example
+\f3\b \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf2 \cb3 \strokec2 db.sales.aggregate([
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$group: \{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0_id: \cf6 \strokec6 '$item'\cf2 \strokec2 ,
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0itemCount: \{ $count: \{\} \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 ])
+\f2 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0 \cf7 \cb8 \strokec7 2) Using MongoDB $count with the $match example
+\f3\b \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf2 \cb3 \strokec2 db.sales.aggregate([
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$group: \{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0_id: \cf6 \strokec6 '$item'\cf2 \strokec2 ,
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0itemCount: \{ $count: \{\} \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$match: \{ itemCount: \{ $gt: \cf9 \strokec9 2\cf2 \strokec2  \} \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 ]);
+\f2 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0 \cf7 \cb8 \strokec7 Introduction to the MongoDB $sum
+\f3\b \cf0 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0\b0 \cf7 \cb8 \strokec7 1) A simple MongoDB $sum example\
+
+\f1 \cf2 \cb3 \strokec2 db.sales.aggregate([
+\f2 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$group: \{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0_id: \cf5 \cb3 \strokec5 null\cf2 \cb3 \strokec2 ,
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0totalQty: \{ $sum: \cf6 \strokec6 '$quantity'\cf2 \strokec2  \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 ]);
+\f2 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f3\b \cf0 \cb8 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b0 \cf10 \cb8 \strokec10 To remove the 
+\f4 \cf11 \cb12 \strokec11 _id
+\f0 \cf10 \cb8 \strokec10  field from the output document, you can use the 
+\f4 \cf11 \cb12 \strokec11 $project
+\f0 \cf10 \cb8 \strokec10  like this:
+\f2 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf2 \cb3 \strokec2 db.sales.aggregate([
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$group: \{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0_id: \cf5 \cb3 \strokec5 null\cf2 \cb3 \strokec2 ,
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0totalQty: \{ $sum: \cf6 \strokec6 '$quantity'\cf2 \strokec2  \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\{ $project: \{ _id: \cf9 \strokec9 0\cf2 \strokec2  \} \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 ]);
+\f2 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0 \cf7 \cb8 \strokec7 2) Using mongoDB $sum to calculcate the sum of groups
+\f3\b \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf2 \cb3 \strokec2 db.sales.aggregate([
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$group: \{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0_id: \cf6 \strokec6 '$item'\cf2 \strokec2 ,
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0totalQty: \{ $sum: \cf6 \strokec6 '$quantity'\cf2 \strokec2  \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 ]);
+\f2 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0 \cf7 \cb8 \strokec7 3) Using the MongoDB $sum with $sort example
+\f3\b \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf2 \cb3 \strokec2 db.sales.aggregate([
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$group: \{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0_id: \cf6 \strokec6 '$item'\cf2 \strokec2 ,
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0totalQty: \{ $sum: \cf6 \strokec6 '$quantity'\cf2 \strokec2  \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\{ $sort: \{ totalQty: \cf9 \strokec9 -1\cf2 \strokec2  \} \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 ]);
+\f2 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf7 \strokec7 4) Using the MongoDB $sum with $match example\
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf2 \cb3 \strokec2 db.sales.aggregate([
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$group: \{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0_id: \cf6 \strokec6 '$item'\cf2 \strokec2 ,
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0totalQty: \{ $sum: \cf6 \strokec6 '$quantity'\cf2 \strokec2  \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\{ $match: \{ totalQty: \{ $gt: \cf9 \strokec9 50\cf2 \strokec2  \} \} \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\{ $sort: \{ totalQty: \cf9 \strokec9 -1\cf2 \strokec2  \} \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 ]);
+\f2 \cf0 \cb1 \strokec4 \
+\
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0 \cf7 \cb8 \strokec7 5) Using the MongoDB $sum with an expression
+\f3\b \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf2 \cb3 \strokec2 db.sales.aggregate([
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$group: \{
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0_id: \cf6 \strokec6 '$size'\cf2 \strokec2 ,
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0totalAmount: \{ $sum: \{ $multiply: [\cf6 \strokec6 '$price'\cf2 \strokec2 , \cf6 \strokec6 '$quantity'\cf2 \strokec2 ] \} \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 \'a0\'a0\{ $sort: \{ totalAmount: \cf9 \strokec9 -1\cf2 \strokec2  \} \},
+\f2 \cf0 \cb1 \strokec4 \
+
+\f1 \cf2 \cb3 \strokec2 ]);
+\f2 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0\fs45\fsmilli22667 \cf7 \cb8 \strokec7 Introduction to the MongoDB $max
+\f3\b\fs36 \cf0 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0\b0\fs34\fsmilli17333 \cf7 \cb8 \strokec7 1) Using MongoDB $max to find the maximum value example
+\f3\b\fs28 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0\fs32 \cf2 \cb3 \strokec2 db.sales.aggregate([
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$group: \{
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0_id: \cf5 \cb3 \strokec5 null\cf2 \cb3 \strokec2 ,
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0maxQty: \{ $max: \cf6 \strokec6 '$quantity'\cf2 \strokec2  \},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$project: \{
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0_id: \cf9 \strokec9 0\cf2 \strokec2 ,
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 ]);
+\f2\fs24 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0\fs34\fsmilli17333 \cf7 \cb8 \strokec7 2) Using MongoDB $max operator to find the maximum value for each group
+\f3\b\fs28 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0\fs32 \cf2 \cb3 \strokec2 db.sales.aggregate([
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$group: \{
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0_id: \cf6 \strokec6 '$item'\cf2 \strokec2 ,
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0maxQty: \{ $max: \cf6 \strokec6 '$quantity'\cf2 \strokec2  \},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 ]);
+\f2\fs24 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0\fs34\fsmilli17333 \cf7 \cb8 \strokec7 3) Using MongoDB $max operator example
+\f3\b\fs28 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0\fs32 \cf2 \cb3 \strokec2 db.sales.aggregate([
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$group: \{
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0_id: \cf6 \strokec6 '$item'\cf2 \strokec2 ,
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0maxQty: \{ $max: \{ $multiply: [\cf6 \strokec6 '$quantity'\cf2 \strokec2 , \cf6 \strokec6 '$price'\cf2 \strokec2 ] \} \},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 ]);
+\f2\fs24 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0\fs45\fsmilli22667 \cf7 \cb8 \strokec7 Introduction to the MongoDB $min
+\f3\b\fs36 \cf0 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0\b0\fs34\fsmilli17333 \cf7 \cb8 \strokec7 1) Using MongoDB $min to find the minimum value example
+\f3\b\fs28 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0\fs32 \cf2 \cb3 \strokec2 db.sales.aggregate([
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$group: \{
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0_id: \cf5 \cb3 \strokec5 null\cf2 \cb3 \strokec2 ,
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0maxQty: \{ $min: \cf6 \strokec6 '$quantity'\cf2 \strokec2  \},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$project: \{
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0_id: \cf9 \strokec9 0\cf2 \strokec2 ,
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 ]);
+\f2\fs24 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0\fs34\fsmilli17333 \cf7 \cb8 \strokec7 2) Using MongoDB $min operator to find the minimum value for each group
+\f3\b\fs28 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0\fs32 \cf2 \cb3 \strokec2 db.sales.aggregate([
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$group: \{
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0_id: \cf6 \strokec6 '$item'\cf2 \strokec2 ,
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0minQty: \{ $min: \cf6 \strokec6 '$quantity'\cf2 \strokec2  \},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 ]);
+\f2\fs24 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0\fs34\fsmilli17333 \cf7 \cb8 \strokec7 3) Using MongoDB $min operator example
+\f3\b\fs28 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0\fs32 \cf2 \cb3 \strokec2 db.sales.aggregate([
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\{
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0$group: \{
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0_id: \cf6 \strokec6 '$item'\cf2 \strokec2 ,
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\'a0\'a0maxQty: \{ $min: \{ $multiply: [\cf6 \strokec6 '$quantity'\cf2 \strokec2 , \cf6 \strokec6 '$price'\cf2 \strokec2 ] \} \},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\'a0\'a0\},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 \'a0\'a0\},
+\f2\fs24 \cf0 \cb1 \strokec4 \
+
+\f1\fs32 \cf2 \cb3 \strokec2 ]);
+\f2\fs24 \cf0 \cb1 \strokec4 \
+}
