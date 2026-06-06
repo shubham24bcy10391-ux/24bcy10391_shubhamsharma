@@ -1,0 +1,516 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2870
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\froman\fcharset0 Times-Bold;\f2\fmodern\fcharset0 Courier;
+\f3\froman\fcharset0 Times-Roman;\f4\fmodern\fcharset0 CourierNewPSMT;}
+{\colortbl;\red255\green255\blue255;\red42\green49\blue64;\red255\green255\blue255;\red0\green0\blue0;
+\red214\green85\blue98;\red30\green33\blue39;\red197\green136\blue83;\red155\green162\blue177;\red25\green28\blue31;
+\red66\green66\blue66;\red242\green242\blue242;\red136\green185\blue102;\red72\green168\blue181;}
+{\*\expandedcolortbl;;\cssrgb\c21569\c25490\c31765;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+\cssrgb\c87843\c42353\c45882;\cssrgb\c15686\c17255\c20392;\cssrgb\c81961\c60392\c40000;\cssrgb\c67059\c69804\c74902;\cssrgb\c12941\c14510\c16078;
+\cssrgb\c32941\c32941\c32941;\cssrgb\c96078\c96078\c96078;\cssrgb\c59608\c76471\c47451;\cssrgb\c33725\c71373\c76078;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww33400\viewh21000\viewkind0
+\deftab720
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 db.sales.insertMany([\
+	\{ "_id" : 1, "item" : "Americanos", "price" : 5, "size": "Short", "quantity" : 22, "date" : ISODate("2022-01-15T08:00:00Z") \},\
+	\{ "_id" : 2, "item" : "Cappuccino", "price" : 6, "size": "Short","quantity" : 12, "date" : ISODate("2022-01-16T09:00:00Z") \},\
+	\{ "_id" : 3, "item" : "Lattes", "price" : 15, "size": "Grande","quantity" : 25, "date" : ISODate("2022-01-16T09:05:00Z") \},\
+	\{ "_id" : 4, "item" : "Mochas", "price" : 25,"size": "Tall", "quantity" : 11, "date" : ISODate("2022-02-17T08:00:00Z") \},\
+	\{ "_id" : 5, "item" : "Americanos", "price" : 10, "size": "Grande","quantity" : 12, "date" : ISODate("2022-02-18T21:06:00Z") \},\
+	\{ "_id" : 6, "item" : "Cappuccino", "price" : 7, "size": "Tall","quantity" : 20, "date" : ISODate("2022-02-20T10:07:00Z") \},\
+	\{ "_id" : 7, "item" : "Lattes", "price" : 25,"size": "Tall", "quantity" : 30, "date" : ISODate("2022-02-21T10:08:00Z") \},\
+	\{ "_id" : 8, "item" : "Americanos", "price" : 10, "size": "Grande","quantity" : 21, "date" : ISODate("2022-02-22T14:09:00Z") \},\
+	\{ "_id" : 9, "item" : "Cappuccino", "price" : 10, "size": "Grande","quantity" : 17, "date" : ISODate("2022-02-23T14:09:00Z") \},\
+	\{ "_id" : 10, "item" : "Americanos", "price" : 8, "size": "Tall","quantity" : 15, "date" : ISODate("2022-02-25T14:09:00Z")\}\
+]);\
+db.sales.createIndex(\{date:1\})\
+date_1\
+db.sales.getIndexes()\
+[\
+  \{ v: 2, key: \{ id: 1 \}, name: '_id' \},\
+  \{ v: 2, key: \{ date: 1 \}, name: 'date_1' \}\
+]\
+db.sales.getIndexes()\
+[ \{ v: 2, key: \{ _id: 1 \}, name: '_id_' \} ]\
+\
+db.sales.createIndex(\{item: 1\})\
+item_1\
+\
+db.sales.getIndexes()\
+[\
+  \{ v: 2, key: \{ _id: 1 \}, name: '_id_' \},\
+  \{ v: 2, key: \{ item: 1 \}, name: 'item_1' \}\
+]\
+List indexes of a collection
+\f1\b \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .collection.getIndexes\cf8 \strokec8 ()
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .sales.getIndexes\cf8 \strokec8 ()
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0 \cf2 \cb3 \strokec2 Explain a query plan
+\f1\b \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0 \cf8 \cb6 \strokec8 db.movies.find(\{
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \'a0\'a0\'a0title: 'Pirates of Silicon Valley
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \})
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 To get the information and execution statistics of query plans, you can use the 
+\f4 \cf10 \cb11 \strokec10 explain()
+\f0 \cf9 \cb3 \strokec9  method:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .collection.explain\cf8 \strokec8 ()
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 For example, the following returns the query plans and execution statistics for the query that finds the movies with the title 
+\f4 \cf10 \cb11 \strokec10 Pirates of Silicon Valley
+\f0 \cf9 \cb3 \strokec9 :
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf8 \cb6 \strokec8 db.movies.find(\{
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \'a0\'a0\'a0\cf7 \strokec7 title\cf8 \strokec8 : \cf12 \cb6 \strokec12 'Pirates of Silicon Valley'
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \}).explain(\cf12 \cb6 \strokec12 'executionStats'\cf8 \cb6 \strokec8 )
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f4 \cf9 \cb3 \strokec9 Code language: JavaScript (javascript)
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 The 
+\f4 \cf10 \cb11 \strokec10 explain()
+\f0 \cf9 \cb3 \strokec9  method returns a lot of information. And you should pay attention to the following 
+\f4 \cf10 \cb11 \strokec10 winningPlan
+\f0 \cf9 \cb3 \strokec9 :
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf8 \cb6 \strokec8 ...
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \'a0\'a0\'a0\'a0winningPlan: \{
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \'a0\'a0\'a0\'a0\'a0\'a0\cf7 \strokec7 stage\cf8 \strokec8 : \cf12 \cb6 \strokec12 'COLLSCAN'\cf8 \cb6 \strokec8 ,
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \'a0\'a0\'a0\'a0\'a0\'a0\cf7 \strokec7 filter\cf8 \strokec8 : \{ \cf7 \strokec7 title\cf8 \strokec8 : \{ \cf12 \cb6 \strokec12 '$eq'\cf8 \cb6 \strokec8 : \cf12 \cb6 \strokec12 'Pirates of Silicon Valley'\cf8 \cb6 \strokec8  \} \},
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \'a0\'a0\'a0\'a0\'a0\'a0\cf7 \strokec7 direction\cf8 \strokec8 : \cf12 \cb6 \strokec12 'forward'
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \
+\'a0\'a0\'a0\'a0\},
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 ...
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0 \cf2 \cb3 \strokec2 Create an index for a field in a collection
+\f1\b \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b0 \cf9 \cb3 \strokec9 To create an index for the 
+\f4 \cf10 \cb11 \strokec10 title
+\f0 \cf9 \cb3 \strokec9  field, you use the 
+\f4 \cf10 \cb11 \strokec10 createIndex()
+\f0 \cf9 \cb3 \strokec9  method as follows:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .movies.createIndex\cf8 \strokec8 (\{\cf12 \cb6 \strokec12 title\cf8 \cb6 \strokec8 :\cf7 \strokec7 1\cf8 \strokec8 \})
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 The following returns the query plans and execution statistics for the query that finds the movie with the title 
+\f4 \cf10 \cb11 \strokec10 Pirates of Silicon Valley
+\f0 \cf9 \cb3 \strokec9 :
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .movies.find\cf8 \strokec8 (\{
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf8 \cb6 \strokec8 \'a0\'a0\'a0\cf12 \cb6 \strokec12 title\cf8 \cb6 \strokec8 : \cf12 \cb6 \strokec12 'Pirates of Silicon Valley'
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \})
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0 \cf2 \cb3 \strokec2 Summary
+\f1\b \cf0 \strokec4 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0
+\f0\b0 \cf9 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec9 An index improves the speed of document retrieval at the cost of additional write and storage space to maintain its data structure.\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec9 Use the 
+\f4 \cf10 \cb11 \strokec10 createIndex()
+\f0 \cf9 \cb3 \strokec9  method to create an index for a field in a collection.\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec9 Use the 
+\f4 \cf10 \cb11 \strokec10 getIndexes()
+\f0 \cf9 \cb3 \strokec9  method to list the indexes of a collection.\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa320\partightenfactor0
+\ls1\ilvl0\cf9 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec9 Use the 
+\f4 \cf10 \cb11 \strokec10 explain()
+\f0 \cf9 \cb3 \strokec9  method to get the information and execution statistics of query plans.\cb1 \
+\pard\pardeftab720\sa106\partightenfactor0
+\cf2 \cb3 \strokec2 Introduction to the MongoDB unique index
+\f1\b \cf0 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0\b0 \cf2 \cb3 \strokec2 1) Create a unique index for a field
+\f1\b \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0 \cf8 \cb6 \strokec8 db.users.insertMany([
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \'a0\'a0\'a0\{ \cf7 \strokec7 email\cf8 \strokec8 :\'a0 \cf12 \cb6 \strokec12 "john@test.com"\cf8 \cb6 \strokec8 , \cf7 \strokec7 name\cf8 \strokec8 : \cf12 \cb6 \strokec12 "john"\cf8 \cb6 \strokec8 \},
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \'a0\'a0\'a0\{ \cf7 \strokec7 email\cf8 \strokec8 :\'a0 \cf12 \cb6 \strokec12 "jane@test.com"\cf8 \cb6 \strokec8 , \cf7 \strokec7 name\cf8 \strokec8 : \cf12 \cb6 \strokec12 "jane"\cf8 \cb6 \strokec8 \},
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 ]);
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 Second, create a unique index for the email field:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .users.createIndex\cf8 \strokec8 (\{\cf12 \cb6 \strokec12 email\cf8 \cb6 \strokec8 :\cf7 \strokec7 1\cf8 \strokec8 \},\{\cf12 \cb6 \strokec12 unique\cf8 \cb6 \strokec8 :true\});\
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 Third, attempt to insert a new document with the email that already exists:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .users.insertOne\cf8 \strokec8 (
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf8 \cb6 \strokec8 \'a0\'a0\'a0\{ \cf12 \cb6 \strokec12 email\cf8 \cb6 \strokec8 :\'a0 \cf12 \cb6 \strokec12 "john@test.com"\cf8 \cb6 \strokec8 , name: \cf12 \cb6 \strokec12 "johny"\cf8 \cb6 \strokec8 \}
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 );
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0 \cf2 \cb3 \strokec2 2) Create a unique index for collection with duplicate data
+\f1\b \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0 \cf8 \cb6 \strokec8 db.users.drop()
+\f3 \cf0 \cb1 \strokec4 \
+\
+
+\f2 \cf8 \cb6 \strokec8 db.users.insertMany([
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \'a0\'a0\'a0\{ \cf7 \strokec7 email\cf8 \strokec8 :\'a0 \cf12 \cb6 \strokec12 "john@test.com"\cf8 \cb6 \strokec8 , \cf7 \strokec7 name\cf8 \strokec8 : \cf12 \cb6 \strokec12 "john"\cf8 \cb6 \strokec8 \},
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \'a0\'a0\'a0\{ \cf7 \strokec7 email\cf8 \strokec8 :\'a0 \cf12 \cb6 \strokec12 "john@test.com"\cf8 \cb6 \strokec8 , \cf7 \strokec7 name\cf8 \strokec8 : \cf12 \cb6 \strokec12 "johny"\cf8 \cb6 \strokec8 \},
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \'a0\'a0\'a0\{ \cf7 \strokec7 email\cf8 \strokec8 :\'a0 \cf12 \cb6 \strokec12 "jane@test.com"\cf8 \cb6 \strokec8 , \cf7 \strokec7 name\cf8 \strokec8 : \cf12 \cb6 \strokec12 "jane"\cf8 \cb6 \strokec8 \},
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 ])
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 Second, attempt to create a unique index for the email field of the 
+\f4 \cf10 \cb11 \strokec10 users
+\f0 \cf9 \cb3 \strokec9  collection:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .users.createIndex\cf8 \strokec8 (\{\cf12 \cb6 \strokec12 email\cf8 \cb6 \strokec8 : \cf7 \strokec7 1\cf8 \strokec8 \},\{\cf12 \cb6 \strokec12 unique\cf8 \cb6 \strokec8 :true\})
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0 \cf2 \cb3 \strokec2 Unique compound index
+\f1\b \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b0 \cf9 \cb3 \strokec9 To create a unique compound index, you specify fields in the index specification like this:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf8 \cb6 \strokec8 db.collection.createIndex(\{\cf7 \strokec7 field1\cf8 \strokec8 : \cf7 \strokec7 1\cf8 \strokec8 , \cf7 \strokec7 field2\cf8 \strokec8 : \cf7 \strokec7 1\cf8 \strokec8 \}, \{\cf7 \strokec7 unique\cf8 \strokec8 : \cf13 \cb6 \strokec13 true\cf8 \cb6 \strokec8 \});
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 First, create a 
+\f4 \cf10 \cb11 \strokec10 locations
+\f0 \cf9 \cb3 \strokec9  collection by adding one location to it:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .locations.insertOne\cf8 \strokec8 (\{
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf8 \cb6 \strokec8 	\cf12 \cb6 \strokec12 address\cf8 \cb6 \strokec8 : \cf12 \cb6 \strokec12 "Downtown San Jose, CA, USA"\cf8 \cb6 \strokec8 ,
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 	lat: \cf7 \strokec7 37.335480\cf8 \strokec8 ,
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 	long: -\cf7 \strokec7 121.893028
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \})\
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 Second, create a unique compound index for the 
+\f4 \cf10 \cb11 \strokec10 lat
+\f0 \cf9 \cb3 \strokec9  and 
+\f4 \cf10 \cb11 \strokec10 long
+\f0 \cf9 \cb3 \strokec9  fields of the 
+\f4 \cf10 \cb11 \strokec10 locations
+\f0 \cf9 \cb3 \strokec9  collection:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .locations.createIndex\cf8 \strokec8 (\{
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 	\cf12 \cb6 \strokec12 lat\cf8 \cb6 \strokec8 : \cf7 \strokec7 1\cf8 \strokec8 ,
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 	long: \cf7 \strokec7 1
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \},\{ \cf12 \cb6 \strokec12 unique\cf8 \cb6 \strokec8 : true \});
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \cb3 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .locations.insertOne\cf8 \strokec8 (\{
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf8 \cb6 \strokec8 	\cf12 \cb6 \strokec12 address\cf8 \cb6 \strokec8 : \cf12 \cb6 \strokec12 "Dev Bootcamp, San Jose, CA, USA"\cf8 \cb6 \strokec8 ,
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 	lat: \cf7 \strokec7 37.335480\cf8 \strokec8 ,
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 	long: -\cf7 \strokec7 122.893028
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \})
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 Finally, attempt to insert a location with the 
+\f4 \cf10 \cb11 \strokec10 lat
+\f0 \cf9 \cb3 \strokec9  and 
+\f4 \cf10 \cb11 \strokec10 long
+\f0 \cf9 \cb3 \strokec9  that already exists:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .locations.insertOne\cf8 \strokec8 (\{
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf8 \cb6 \strokec8 	\cf12 \cb6 \strokec12 address\cf8 \cb6 \strokec8 : \cf12 \cb6 \strokec12 "Central San Jose, CA, USA"\cf8 \cb6 \strokec8 ,
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 	lat: \cf7 \strokec7 37.335480\cf8 \strokec8 ,
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 	long: -\cf7 \strokec7 121.893028
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf8 \cb6 \strokec8 \})
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0 \cf2 \cb3 \strokec2 Introduction to the MongoDB compound indexes
+\f1\b \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b0 \cf9 \cb3 \strokec9 First, create a compound index on the 
+\f4 \cf10 \cb11 \strokec10 title
+\f0 \cf9 \cb3 \strokec9  and 
+\f4 \cf10 \cb11 \strokec10 year
+\f0 \cf9 \cb3 \strokec9  fields of the 
+\f4 \cf10 \cb11 \strokec10 movies
+\f0 \cf9 \cb3 \strokec9  collection:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf8 \cb6 \strokec8 db.movies.createIndex(\{ \cf7 \strokec7 title\cf8 \strokec8 : \cf7 \strokec7 1\cf8 \strokec8 , \cf7 \strokec7 year\cf8 \strokec8 : \cf7 \strokec7 1\cf8 \strokec8  \})
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 Second, find the movies whose titles contain the word 
+\f4 \cf10 \cb11 \strokec10 valley
+\f0 \cf9 \cb3 \strokec9  and were released in the year 2014:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf8 \cb6 \strokec8 db.movies.find(\{\cf7 \strokec7 title\cf8 \strokec8 : \cf12 \cb6 \strokec12 /valley/gi\cf8 \cb6 \strokec8 , \cf7 \strokec7 year\cf8 \strokec8 : \cf7 \strokec7 2014\cf8 \strokec8 \}).explain(\cf12 \cb6 \strokec12 'executionStats'\cf8 \cb6 \strokec8 );
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 Third, find the movies whose titles contain the word 
+\f4 \cf10 \cb11 \strokec10 valley
+\f0 \cf9 \cb3 \strokec9 :
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf8 \cb6 \strokec8 db.movies.find(\{\cf7 \strokec7 title\cf8 \strokec8 :\cf12 \cb6 \strokec12 /valley/gi\cf8 \cb6 \strokec8 \}).explain(\cf12 \cb6 \strokec12 'executionStats'\cf8 \cb6 \strokec8 );
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 Finally, find the movies that were released in the year 2014:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf8 \cb6 \strokec8 db.movies.find(\{\cf7 \strokec7 year\cf8 \strokec8 : \cf7 \strokec7 2014\cf8 \strokec8 \}).explain(\cf12 \cb6 \strokec12 'executionStats'\cf8 \cb6 \strokec8 );
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0 \cf2 \cb3 \strokec2 Introduction to the MongoDB drop index
+\f1\b \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b0 \cf2 \cb1 \strokec2 1) Drop an index example\
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .movies.createIndex\cf8 \strokec8 (\{\cf12 \cb6 \strokec12 year\cf8 \cb6 \strokec8 : \cf7 \strokec7 1\cf8 \strokec8 \})
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 Second, show all the indexes of the 
+\f4 \cf10 \cb11 \strokec10 movies
+\f0 \cf9 \cb3 \strokec9  collection by using the 
+\f4 \cf10 \cb11 \strokec10 getIndexes()
+\f0 \cf9 \cb3 \strokec9  method:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .movies.getIndexes\cf8 \strokec8 ()
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 Third, drop the 
+\f4 \cf10 \cb11 \strokec10 year_1
+\f0 \cf9 \cb3 \strokec9  index using the 
+\f4 \cf10 \cb11 \strokec10 dropIndex()
+\f0 \cf9 \cb3 \strokec9  method:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf8 \cb6 \strokec8 db.movies.dropIndex(\cf12 \cb6 \strokec12 'year_1'\cf8 \cb6 \strokec8 )
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 Finally, verify the index deletion using the 
+\f4 \cf10 \cb11 \strokec10 getIndexes()
+\f0 \cf9 \cb3 \strokec9  method:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .movies.getIndexes\cf8 \strokec8 ()
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0 \cf2 \cb3 \strokec2 2) Drop an index by the index specification
+\f1\b \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\b0 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .movies.createIndex\cf8 \strokec8 (\{\cf12 \cb6 \strokec12 runtime\cf8 \cb6 \strokec8 : -\cf7 \strokec7 1\cf8 \strokec8 \})
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 Second, list the indexes of the movies collection:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .movies.getIndexes\cf8 \strokec8 ()
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 Third, drop the index 
+\f4 \cf10 \cb11 \strokec10 runtime_-1
+\f0 \cf9 \cb3 \strokec9  but use the index specification instead of the index name:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .movies.dropIndex\cf8 \strokec8 (\{\cf12 \cb6 \strokec12 runtime\cf8 \cb6 \strokec8 : -\cf7 \strokec7 1\cf8 \strokec8 \});
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\sa106\partightenfactor0
+
+\f0 \cf2 \cb3 \strokec2 3) Drop all non-_id indexes example
+\f1\b \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b0 \cf9 \cb3 \strokec9 First, create two indexes for the year and runtime fields of the movies collection:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .movies.createIndex\cf8 \strokec8 (\{\cf12 \cb6 \strokec12 year\cf8 \cb6 \strokec8 : \cf7 \strokec7 1\cf8 \strokec8 \})
+\f3 \cf0 \cb1 \strokec4 \
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .movies.createIndex\cf8 \strokec8 (\{\cf12 \cb6 \strokec12 runtime\cf8 \cb6 \strokec8 : \cf7 \strokec7 1\cf8 \strokec8 \})
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 Second, show the indexes of the movies collection:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .movies.getIndexes\cf8 \strokec8 ()
+\f3 \cf0 \cb1 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f0 \cf9 \cb3 \strokec9 Third, drop all non-_id indexes of movies collection using the 
+\f4 \cf10 \cb11 \strokec10 dropIndexes()
+\f0 \cf9 \cb3 \strokec9  method:
+\f3 \cf0 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf5 \cb6 \strokec5 db\cf7 \strokec7 .movies.dropIndexes\cf8 \strokec8 ()
+\f3 \cf0 \cb1 \strokec4 \
+}
